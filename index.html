@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Super Hub</title>
+<style>
+body{
+  background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial;
+  text-align: center;
+  color: white;
+}
+section{
+  background: rgba(0,0,0,0.7);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #39FF14;
+}
+button{
+  padding:6px;
+  margin:3px;
+  cursor:pointer;
+}
+input,textarea{
+  padding:6px;
+  margin:4px;
+}
+#board button{
+  width:60px;
+  height:60px;
+  font-size:24px;
+  margin:2px;
+}
+#calculator button{
+  width:55px;
+  height:40px;
+  font-size:18px;
+  margin:2px;
+}
+#calculator input{
+  width:270px;
+  height:40px;
+  font-size:20px;
+  text-align:right;
+  margin-bottom:5px;
+  color:#0f0;
+  background:#000;
+}
+</style>
+</head>
+
+<body>
+<h1>Student Super Hub</h1>
+
+<!-- CALCULATOR -->
+<section>
+<h2>Advanced Scientific Calculator</h2>
+<div id="calculator">
+<input type="text" id="calcScreen" readonly>
+<br>
+<div style="display:grid; grid-template-columns: repeat(5, 55px); grid-gap:5px; margin-top:5px;">
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button onclick="press('/')">/</button>
+<button onclick="press('Math.pow(')">xʸ</button>
+
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button onclick="press('*')">*</button>
+<button onclick="press('Math.sqrt(')">√</button>
+
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button onclick="press('-')">-</button>
+<button onclick="press('Math.log(')">log</button>
+
+<button onclick="press('0')">0</button>
+<button onclick="press('.')">.</button>
+<button onclick="calculate()">=</button>
+<button onclick="press('+')">+</button>
+<button onclick="press('Math.sin(')">sin</button>
+
+<button onclick="press('(')">(</button>
+<button onclick="press(')')">)</button>
+<button onclick="press('Math.cos(')">cos</button>
+<button onclick="press('Math.tan(')">tan</button>
+<button onclick="press('!')">!</button>
+
+<button onclick="clearCalc()" colspan="5" style="width:100%">C</button>
+</div>
+</div>
+</section>
+
+<!-- CUSTOM POMODORO TIMER -->
+<section>
+<h2>Custom Pomodoro Timer</h2>
+<label>Study time (minutes): </label>
+<input type="number" id="studyTime" value="25" min="1">
+<br>
+<label>Break time (minutes): </label>
+<input type="number" id="breakTime" value="5" min="1">
+<br>
+<p id="timerDisplay">25:00</p>
+<button onclick="startCustomTimer()">Start</button>
+<button onclick="pauseTimer()">Pause</button>
+<button onclick="resetCustomTimer()">Reset</button>
+<p id="statusDisplay"></p>
+</section>
+
+<!-- UNIT CONVERTER -->
+<section>
+<h2>Unit Converters</h2>
+<input id="convertInput" placeholder="Enter value">
+<br><br>
+<button onclick="mToCm()">Meters → Centimeters</button>
+<button onclick="cmToM()">Centimeters → Meters</button>
+<button onclick="kmToMiles()">Kilometers → Miles</button>
+<button onclick="milesToKm()">Miles → Kilometers</button>
+<br>
+<button onclick="kgToG()">Kilograms → Grams</button>
+<button onclick="gToKg()">Grams → Kilograms</button>
+<button onclick="kgToLb()">Kilograms → Pounds</button>
+<button onclick="lbToKg()">Pounds → Kilograms</button>
+<br>
+<button onclick="cToF()">C → F</button>
+<button onclick="fToC()">F → C</button>
+<p id="convertResult"></p>
+</section>
+
+<!-- DICTIONARY -->
+<section>
+<h2>Dictionary</h2>
+<input id="word" placeholder="Enter word">
+<button onclick="searchWord()">Search</button>
+<p id="definition"></p>
+</section>
+
+<!-- NOTES -->
+<section>
+<h2>My Study Notes</h2>
+<textarea id="notes" rows="6" cols="40" placeholder="Write your notes here..."></textarea>
+<br>
+<button onclick="saveNotes()">Save Notes</button>
+</section>
+
+<!-- MOTIVATION -->
+<section>
+<h2>Motivation</h2>
+<p id="quote"></p>
+<button onclick="newQuote()">New Motivation</button>
+</section>
+
+<!-- TODO LIST -->
+<section>
+<h2>To Do List</h2>
+<input id="task" placeholder="New task">
+<button onclick="addTask()">Add</button>
+<ul id="taskList"></ul>
+</section>
+
+<!-- MATH PRACTICE -->
+<section>
+<h2>Math Practice</h2>
+<p id="mathQuestion"></p>
+<input id="mathAnswer" placeholder="Answer">
+<button onclick="checkMath()">Check</button>
+<p id="mathResult"></p>
+</section>
+
+<!-- STUDY TIPS -->
+<section>
+<h2>Study Tips</h2>
+<ul id="tips"></ul>
+</section>
+
+<!-- STUDY VIDEOS -->
+<section>
+<h2>Study Videos</h2>
+<iframe width="300" height="200" src="https://www.youtube.com/embed/IlU-zDU6aQ0"></iframe>
+<iframe width="300" height="200" src="https://www.youtube.com/embed/Z-zNHHpXoMM"></iframe>
+<iframe width="300" height="200" src="https://www.youtube.com/embed/TjPFZaMe2yw"></iframe>
+</section>
+
+<!-- TIC TAC TOE -->
+<section>
+<h2>Tic Tac Toe</h2>
+<div id="board">
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<br>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<br>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+</div>
+<p id="winner"></p>
+<button onclick="resetGame()">Restart</button>
+</section>
+
+<script>
+/* CALCULATOR */
+function press(val){
+  let screen=document.getElementById("calcScreen");
+  if(val=="!"){
+    screen.value = factorial(parseFloat(screen.value));
+  } else {
+    screen.value += val;
+  }
+}
+function factorial(n){
+  if(n<0) return "Error";
+  if(n===0 || n===1) return 1;
+  let res=1;
+  for(let i=2;i<=n;i++) res*=i;
+  return res;
+}
+function calculate(){
+  try{document.getElementById("calcScreen").value=eval(document.getElementById("calcScreen").value);}
+  catch(e){document.getElementById("calcScreen").value="Error";}
+}
+function clearCalc(){document.getElementById("calcScreen").value="";}
+
+/* CUSTOM POMODORO TIMER */
+let timerInterval, totalSeconds, isStudy=true;
+function startCustomTimer(){
+  clearInterval(timerInterval);
+  let studyM=parseInt(document.getElementById("studyTime").value);
+  let breakM=parseInt(document.getElementById("breakTime").value);
+  totalSeconds = (isStudy ? studyM : breakM)*60;
+  document.getElementById("statusDisplay").innerText = isStudy ? "Study Time" : "Break Time";
+  timerInterval = setInterval(function(){
+    totalSeconds--;
+    let m=Math.floor(totalSeconds/60), s=totalSeconds%60;
+    document.getElementById("timerDisplay").innerText=m+":"+(s<10?"0":"")+s;
+    if(totalSeconds<=0){
+      clearInterval(timerInterval);
+      alert(isStudy?"Study over! Break time.":"Break over! Back to study.");
+      isStudy=!isStudy;
+      startCustomTimer();
+    }
+  },1000);
+}
+function pauseTimer(){clearInterval(timerInterval);}
+function resetCustomTimer(){
+  clearInterval(timerInterval);
+  let studyM=parseInt(document.getElementById("studyTime").value);
+  totalSeconds=studyM*60; isStudy=true;
+  document.getElementById("timerDisplay").innerText=studyM+":00";
+  document.getElementById("statusDisplay").innerText="Ready";
+}
+
+/* UNIT CONVERTER */
+function mToCm(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x*100}
+function cmToM(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x/100}
+function kmToMiles(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x*0.621371}
+function milesToKm(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x/0.621371}
+function kgToG(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x*1000}
+function gToKg(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x/1000}
+function kgToLb(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x*2.20462}
+function lbToKg(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=x/2.20462}
+function cToF(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=(x*9/5)+32}
+function fToC(){let x=document.getElementById("convertInput").value; document.getElementById("convertResult").innerText=(x-32)*5/9}
+
+/* DICTIONARY */
+async function searchWord(){
+  let word=document.getElementById("word").value;
+  let res=await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+word);
+  let data=await res.json();
+  document.getElementById("definition").innerText=data[0].meanings[0].definitions[0].definition;
+}
+
+/* NOTES */
+function saveNotes(){
+  let notes=document.getElementById("notes").value;
+  localStorage.setItem("notes",notes);
+  alert("Notes Saved");
+}
+document.getElementById("notes").value=localStorage.getItem("notes")||"";
+
+/* MOTIVATION */
+let quotes=["Success comes from discipline","Study now shine later","Small progress every day","Focus on your goals","Hard work beats talent"];
+function newQuote(){document.getElementById("quote").innerText=quotes[Math.floor(Math.random()*quotes.length)]}
+
+/* TODO */
+function addTask(){let task=document.getElementById("task").value; let li=document.createElement("li"); li.innerText=task; document.getElementById("taskList").appendChild(li)}
+
+/* MATH PRACTICE */
+let a=Math.floor(Math.random()*10), b=Math.floor(Math.random()*10);
+document.getElementById("mathQuestion").innerText=a+" + "+b;
+function checkMath(){let ans=document.getElementById("mathAnswer").value; document.getElementById("mathResult").innerText=ans==a+b?"Correct!":"Try again";}
+
+/* STUDY TIPS */
+let tips=["Study 25 minutes then rest","Review notes daily","Practice past exam questions","Teach someone what you learned","Use flashcards to memorize","Study in a quiet place","Turn off phone notifications","Sleep well before exams","Drink water while studying","Make a daily study schedule","Break big topics into small parts","Highlight key information","Ask teachers when confused","Revise weekly","Use diagrams and charts","Write summaries of lessons","Study with friends sometimes","Use practice tests","Stay organized with notebooks","Set clear goals","Start studying early","Don't cram before exams","Reward yourself after studying","Keep your desk clean","Use different colors for notes","Explain topics aloud","Practice math daily","Review mistakes carefully","Take short breaks","Keep a positive mindset","Focus on understanding not memorizing","Stay consistent","Use educational videos","Plan revision time","Study hardest subjects first","Eat healthy food","Keep hydrated","Avoid procrastination","Track your progress","Read textbooks actively"];
+for(let i=0;i<tips.length;i++){let li=document.createElement("li"); li.innerText=tips[i]; document.getElementById("tips").appendChild(li);}
+
+/* TIC TAC TOE */
+let currentPlayer="X";
+function play(cell){if(cell.innerText!="") return; cell.innerText=currentPlayer; checkWinner(); currentPlayer=currentPlayer=="X"?"O":"X";}
+function checkWinner(){let cells=document.querySelectorAll("#board button"); let combos=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; for(let c of combos){let a=cells[c[0]].innerText,b=cells[c[1]].innerText,d=cells[c[2]].innerText; if(a && a==b && b==d){document.getElementById("winner").innerText=a+" Wins!"}}}
+function resetGame(){let cells=document.querySelectorAll("#board button"); cells.forEach(c=>c.innerText=""); document.getElementById("winner").innerText="";}
+</script>
+
+</body>
+</html>
