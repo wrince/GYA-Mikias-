@@ -83,4 +83,13 @@ function checkWinner(){
 }
 function resetGame(){document.querySelectorAll("#board button").forEach(c=>c.innerText=""); document.getElementById("winner").innerText=""; document.querySelectorAll(".win-line").forEach(l=>l.remove()); currentPlayer="X"; winCombo=[];}
 function resetScores(){xWins=0;oWins=0;document.getElementById("scoreboard").innerText="X Wins: 0 | O Wins: 0";}
-function drawWinLine(combo){let board=document.getElementById("board"); let btns=document.querySelectorAll("#board button"); let rect1=btns[combo[0]].getBoundingClientRect(); let rect2=btns[combo[2]].getBoundingClientRect(); let line=document.createElement("div"); line.className="win-line"; board.appendChild(line); let boardRect=board.getBoundingClientRect(); line.style.left=(rect1.left-boardRect.left+
+function drawWinLine(combo){let board=document.getElementById("board"); let btns=document.querySelectorAll("#board button"); let rect1=btns[combo[0]].getBoundingClientRect(); let rect2=btns[combo[2]].getBoundingClientRect(); let line=document.createElement("div"); line.className="win-line"; board.appendChild(line); let boardRect=board.getBoundingClientRect(); line.style.left=(rect1.left-boardRect.left+rect1.width/2) + "px";
+line.style.top = (rect1.top - boardRect.top + rect1.height/2) + "px";
+let dx = rect2.left - rect1.left;
+let dy = rect2.top - rect1.top;
+let length = Math.sqrt(dx*dx + dy*dy);
+line.style.width = length + "px";
+line.style.transformOrigin = "0 50%";
+let angle = Math.atan2(dy, dx) * 180 / Math.PI;
+line.style.transform = `rotate(${angle}deg)`;
+  }
