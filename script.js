@@ -92,4 +92,4 @@ line.style.width = length + "px";
 line.style.transformOrigin = "0 50%";
 let angle = Math.atan2(dy, dx) * 180 / Math.PI;
 line.style.transform = `rotate(${angle}deg)`;
-  }
+}
