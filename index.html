@@ -1,130 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Student Super Hub</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+
+<!-- FIX: responsive scaling -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Super Hub</title>
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-  <!-- Background layers -->
-  <div id="bg1" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1585079544481-3d8b53ef7039?auto=format&fit=crop&w=1350&q=80');"></div>
-  <div id="bg2" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');"></div>
-  <div id="bg3" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1493244040629-496f6d136cc3?auto=format&fit=crop&w=1350&q=80');"></div>
+<!-- Background layers -->
+<div id="bg1" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1585079544481-3d8b53ef7039?auto=format&fit=crop&w=1350&q=80');"></div>
+<div id="bg2" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');"></div>
+<div id="bg3" class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1493244040629-496f6d136cc3?auto=format&fit=crop&w=1350&q=80');"></div>
 
-  <!-- Title -->
-  <div id="titleNeon">Mikiyas Kassaye</div>
-  <div id="subtitleNeon">Science Fair GYA</div>
+<!-- Title -->
+<h1 id="titleNeon">Mikiyas Kassaye</h1>
+<h2 id="subtitleNeon">Science Fair GYA</h2>
 
-  <!-- Features Dropdown -->
-  <div class="dropdown" onclick="toggleFeature('allFeatures')">▼ Features</div>
-  <div id="allFeatures" class="feature-container">
+<!-- Features Dropdown -->
+<div class="dropdown" onclick="toggleFeature('allFeatures')">▼ Features</div>
 
-    <!-- Calculator -->
-    <div class="dropdown" onclick="toggleFeature('calculatorFeature')">Calculator</div>
-    <section id="calculatorFeature" class="feature-container">
-      <input type="text" id="calcScreen" readonly placeholder="0"><br>
-      <div>
-        <!-- Calculator Buttons -->
-        <button onclick="press('7')">7</button>
-        <button onclick="press('8')">8</button>
-        <button onclick="press('9')">9</button>
-        <button onclick="press('/')">/</button>
-        <button onclick="press('Math.pow(')">xʸ</button><br>
-        <button onclick="press('4')">4</button>
-        <button onclick="press('5')">5</button>
-        <button onclick="press('6')">6</button>
-        <button onclick="press('*')">*</button>
-        <button onclick="press('Math.sqrt(')">√</button><br>
-        <button onclick="press('1')">1</button>
-        <button onclick="press('2')">2</button>
-        <button onclick="press('3')">3</button>
-        <button onclick="press('-')">-</button>
-        <button onclick="press('Math.log(')">log</button><br>
-        <button onclick="press('0')">0</button>
-        <button onclick="press('.')">.</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="press('+')">+</button>
-        <button onclick="press('Math.sin(')">sin</button><br>
-        <button onclick="press('(')">(</button>
-        <button onclick="press(')')">)</button>
-        <button onclick="press('Math.cos(')">cos</button>
-        <button onclick="press('Math.tan(')">tan</button>
-        <button onclick="press('!')">!</button><br>
-        <button onclick="press('Math.exp(')">eˣ</button>
-        <button onclick="press('Math.PI')">π</button>
-        <button onclick="press('Math.E')">e</button>
-        <button onclick="press('1/')">1/x</button>
-        <button onclick="clearCalc()">C</button>
-      </div>
-    </section>
+<div id="allFeatures" class="feature-container">
 
-    <!-- Notes -->
-    <div class="dropdown" onclick="toggleFeature('notesFeature')">Notes</div>
-    <section id="notesFeature" class="feature-container">
-      <textarea id="notes" rows="4" placeholder="Write notes here"></textarea><br>
-      <button onclick="saveNotes()">Save Note</button>
-      <div id="savedNotes"></div>
-    </section>
+<!-- Calculator -->
+<div class="dropdown" onclick="toggleFeature('calculatorFeature')">Calculator</div>
 
-    <!-- Pomodoro Timer -->
-    <div class="dropdown" onclick="toggleFeature('timerFeature')">Pomodoro Timer</div>
-    <section id="timerFeature" class="feature-container">
-      <label>Study time (minutes): </label><input type="number" id="studyTime" value="25" min="1"><br>
-      <label>Break time (minutes): </label><input type="number" id="breakTime" value="5" min="1"><br>
-      <p id="timerDisplay">25:00</p>
-      <button onclick="startCustomTimer()">Start</button>
-      <button onclick="pauseTimer()">Pause</button>
-      <button onclick="resetCustomTimer()">Reset</button>
-      <p id="statusDisplay"></p>
-    </section>
+<section id="calculatorFeature" class="feature-container">
 
-    <!-- Unit Converter -->
-    <div class="dropdown" onclick="toggleFeature('converterFeature')">Unit Converter</div>
-    <section id="converterFeature" class="feature-container">
-      <input id="convertInput" placeholder="Enter value"><br><br>
-      <button onclick="mToCm()">Meters → Centimeters</button>
-      <button onclick="cmToM()">Centimeters → Meters</button>
-      <button onclick="kmToMiles()">Kilometers → Miles</button>
-      <button onclick="milesToKm()">Miles → Kilometers</button><br>
-      <button onclick="kgToG()">Kilograms → Grams</button>
-      <button onclick="gToKg()">Grams → Kilograms</button>
-      <button onclick="kgToLb()">Kilograms → Pounds</button>
-      <button onclick="lbToKg()">Pounds → Kilograms</button><br>
-      <button onclick="cToF()">C → F</button>
-      <button onclick="fToC()">F → C</button>
-      <p id="convertResult"></p>
-    </section>
+<input type="text" id="calcScreen" readonly placeholder="0"><br>
 
-    <!-- Motivation -->
-    <div class="dropdown" onclick="toggleFeature('motivationFeature')">Motivation</div>
-    <section id="motivationFeature" class="feature-container">
-      <p id="quote"></p>
-      <button onclick="newQuote()">New Motivation</button>
-    </section>
+<div class="calc-buttons">
 
-    <!-- Tic Tac Toe -->
-    <div class="dropdown" onclick="toggleFeature('tictactoeFeature')">Tic Tac Toe</div>
-    <section id="tictactoeFeature" class="feature-container">
-      <div id="board">
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-        <button onclick="play(this)"></button>
-      </div>
-      <div id="scoreboard">X Wins: 0 | O Wins: 0</div>
-      <button onclick="resetScores()">Reset Scoreboard</button>
-      <p id="winner"></p>
-      <button onclick="resetGame()">Restart</button>
-    </section>
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button onclick="press('/')">/</button>
+<button onclick="press('Math.pow(')">xʸ</button><br>
 
-  </div>
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button onclick="press('*')">*</button>
+<button onclick="press('Math.sqrt(')">√</button><br>
 
-  <script src="script.js"></script>
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button onclick="press('-')">-</button>
+<button onclick="press('Math.log(')">log</button><br>
+
+<button onclick="press('0')">0</button>
+<button onclick="press('.')">.</button>
+<button onclick="calculate()">=</button>
+<button onclick="press('+')">+</button>
+<button onclick="press('Math.sin(')">sin</button><br>
+
+<button onclick="press('(')">(</button>
+<button onclick="press(')')">)</button>
+<button onclick="press('Math.cos(')">cos</button>
+<button onclick="press('Math.tan(')">tan</button>
+<button onclick="press('!')">!</button><br>
+
+<button onclick="press('Math.exp(')">eˣ</button>
+<button onclick="press('Math.PI')">π</button>
+<button onclick="press('Math.E')">e</button>
+<button onclick="press('1/')">1/x</button>
+<button onclick="clearCalc()">C</button>
+
+</div>
+</section>
+
+<!-- Notes -->
+<div class="dropdown" onclick="toggleFeature('notesFeature')">Notes</div>
+
+<section id="notesFeature" class="feature-container">
+
+<textarea id="notes" rows="4" placeholder="Write notes here"></textarea><br>
+
+<button onclick="saveNotes()">Save Note</button>
+
+<div id="savedNotes"></div>
+
+</section>
+
+<!-- Pomodoro -->
+<div class="dropdown" onclick="toggleFeature('timerFeature')">Pomodoro Timer</div>
+
+<section id="timerFeature" class="feature-container">
+
+<label>Study time (minutes):</label>
+<input type="number" id="studyTime" value="25" min="1"><br>
+
+<label>Break time (minutes):</label>
+<input type="number" id="breakTime" value="5" min="1"><br>
+
+<p id="timerDisplay">25:00</p>
+
+<button onclick="startCustomTimer()">Start</button>
+<button onclick="pauseTimer()">Pause</button>
+<button onclick="resetCustomTimer()">Reset</button>
+
+<p id="statusDisplay"></p>
+
+</section>
+
+<!-- Converter -->
+<div class="dropdown" onclick="toggleFeature('converterFeature')">Unit Converter</div>
+
+<section id="converterFeature" class="feature-container">
+
+<input id="convertInput" placeholder="Enter value"><br><br>
+
+<button onclick="mToCm()">Meters → Centimeters</button>
+<button onclick="cmToM()">Centimeters → Meters</button>
+<button onclick="kmToMiles()">Kilometers → Miles</button>
+<button onclick="milesToKm()">Miles → Kilometers</button><br>
+
+<button onclick="kgToG()">Kilograms → Grams</button>
+<button onclick="gToKg()">Grams → Kilograms</button>
+<button onclick="kgToLb()">Kilograms → Pounds</button>
+<button onclick="lbToKg()">Pounds → Kilograms</button><br>
+
+<button onclick="cToF()">C → F</button>
+<button onclick="fToC()">F → C</button>
+
+<p id="convertResult"></p>
+
+</section>
+
+<!-- Motivation -->
+<div class="dropdown" onclick="toggleFeature('motivationFeature')">Motivation</div>
+
+<section id="motivationFeature" class="feature-container">
+
+<p id="quote"></p>
+
+<button onclick="newQuote()">New Motivation</button>
+
+</section>
+
+<!-- Tic Tac Toe -->
+<div class="dropdown" onclick="toggleFeature('tictactoeFeature')">Tic Tac Toe</div>
+
+<section id="tictactoeFeature" class="feature-container">
+
+<div id="board">
+
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+
+</div>
+
+<div id="scoreboard">X Wins: 0 | O Wins: 0</div>
+
+<button onclick="resetScores()">Reset Scoreboard</button>
+
+<p id="winner"></p>
+
+<button onclick="resetGame()">Restart</button>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
